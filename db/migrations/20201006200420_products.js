@@ -6,7 +6,8 @@ exports.up = function(knex) {
     table.string('imgLink')
     table.string('body')
     table.timestamp('created_at').defaultTo(knex.fn.now())
-    table.unique('id', 'title')
+    table.unique('id')
+    table.unique('title')
   });
 };
 

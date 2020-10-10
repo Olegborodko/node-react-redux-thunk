@@ -35,5 +35,7 @@ exports.seed = function(knex) {
           imgLink: '/img/4.jpg'
         },
       ])
+    }).then(function () {
+      return knex.raw('SELECT setval(\'products_id_seq\', (SELECT MAX(id) from "products"));')
     })
 }

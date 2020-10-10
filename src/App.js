@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 import HotDog from './components/HotDog';
+const axios = require('axios');
+axios.defaults.baseURL = process.env.REACT_APP_API_ENDPOINT + '/api'
 
 class App extends Component {
   state = {
@@ -8,10 +10,23 @@ class App extends Component {
   };
 
   componentDidMount() {
-    
+    const this_ = this; 
+    axios.get(`/products`)
+    .then(function (res) {
+      this_.setState({
+        items: res.data.body
+      })
+    })
+    .catch(function (error) {
+      this_.setState({
+        items: []
+      })
+    })
   }
 
   render() {
+    const { items } = this.state
+    console.log(items)
     return (
       <div className='container'> 
         <div className='header'>
@@ -25,15 +40,15 @@ class App extends Component {
             All hot-dogs
           </div>
           <div className='list'>
-          {/* {hotDogs.map((value, index) => {
+          {items.map((value, index) => {
             return <HotDog 
               title={value.title}
               body={value.body}
               price={value.price}
-              image={'/img/'+value.image+'.jpg'} 
+              image={value.imgLink} 
               key={index}
             />
-          })} */}
+          })}
           </div>
         </div>
       </div>
