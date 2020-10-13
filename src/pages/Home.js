@@ -2,19 +2,13 @@ import React, {Component} from 'react'
 import '../App.css'
 import HotDog from '../components/HotDog'
 import { connect } from 'react-redux'
-const axios = require('axios');
+import actions from '../actions'
+const axios = require('axios')
 axios.defaults.baseURL = process.env.REACT_APP_API_ENDPOINT + '/api'
 
 class Home extends Component {
   componentDidMount() {
-    const this_ = this; 
-    axios.get(`/products`)
-    .then(function (res) {
-      this_.props.getProducts(res.data.body)
-    })
-    .catch(function (error) {
-      this_.props.getProducts([])
-    })
+    this.props.getProducts()
   }
 
   render() {
@@ -45,8 +39,8 @@ export default connect(
     state
   }),
   dispatch => ({
-    getProducts: (data) => {
-      dispatch({ type: 'PRODUCTS_CHANGE', payload: data });
+    getProducts: () => {
+      dispatch(actions.getProducts())
     }
   })
-)(Home);
+)(Home)
