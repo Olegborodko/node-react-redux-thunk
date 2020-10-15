@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import '../App.css'
 import HotDog from '../components/HotDog'
+import HotDogEdit from '../components/HotDogEdit'
 import { connect } from 'react-redux'
 import actions from '../actions'
 const axios = require('axios')
@@ -20,13 +20,26 @@ class Home extends Component {
           </div>
           <div className='list'>
           {state.products.items.map((value, index) => {
-            return <HotDog 
-              title={value.title}
-              body={value.body}
-              price={value.price}
-              image={value.imgLink} 
-              key={index}
-            />
+            // if (state.products.editId === value.id) {
+              if (index === 0) {
+              return <HotDogEdit 
+                title={value.title}
+                body={value.body}
+                price={value.price}
+                image={value.imgLink} 
+                key={value.id}
+                id={value.id}
+              />
+            } else {
+              return <HotDog 
+                title={value.title}
+                body={value.body}
+                price={value.price}
+                image={value.imgLink} 
+                key={value.id}
+                id={value.id}
+              />
+            }
           })}
           </div>
         </div>

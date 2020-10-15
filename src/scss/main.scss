@@ -49,7 +49,7 @@
 }
 
 .one-hot-dog .title{
-  margin: 10px;
+  margin: 10px 0 10px 10px;
   font-size: 14px;
   font-weight: 700;
 }
@@ -83,4 +83,25 @@
   margin-left: 20px;
   font-size: 12px;
   font-weight: bold;
+}
+
+.one-hot-dog-edit li input,
+.one-hot-dog-edit li textarea,
+.one-hot-dog-edit li select{
+  width: 100%;
+} 
+
+.one-hot-dog-edit .title,
+.one-hot-dog-edit .price,
+.one-hot-dog-edit .body{
+  margin-left:0;
+  margin-right:0;
+}
+
+.one-hot-dog-edit .body textarea{
+  height: 80px;
+}
+
+.one-hot-dog-edit select{
+  font-size: 15px;
 }
