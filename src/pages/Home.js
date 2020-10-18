@@ -3,8 +3,6 @@ import HotDog from '../components/HotDog'
 import HotDogEdit from '../components/HotDogEdit'
 import { connect } from 'react-redux'
 import actions from '../actions'
-const axios = require('axios')
-axios.defaults.baseURL = process.env.REACT_APP_API_ENDPOINT + '/api'
 
 class Home extends Component {
   componentDidMount() {
@@ -20,8 +18,7 @@ class Home extends Component {
           </div>
           <div className='list'>
           {state.products.items.map((value, index) => {
-            // if (state.products.editId === value.id) {
-              if (index === 0) {
+            if (state.products.editId === value.id) {
               return <HotDogEdit 
                 title={value.title}
                 body={value.body}

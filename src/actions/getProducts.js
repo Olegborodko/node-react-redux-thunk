@@ -1,8 +1,8 @@
 const axios = require('axios')
+axios.defaults.baseURL = process.env.REACT_APP_API_ENDPOINT + '/api'
 
-export default () => {
-  return (dispatch) => {
-    axios.get(`/products`)
+export function getProducts(dispatch) {
+  axios.get(`/products`)
     .then(function (res) {
       dispatch({
         type: 'PRODUCTS_CHANGE', 
@@ -15,5 +15,10 @@ export default () => {
         payload: []
 	    })
     })
+}
+
+export default () => {
+  return (dispatch) => {
+    getProducts(dispatch)
   }
 }
